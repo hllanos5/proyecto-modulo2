@@ -1,4 +1,4 @@
-import {listarUsuarioRepository, obtenerUsuarioPorCorreoYPassword, crearUsuarioRepository } from "../repository/UsersRepository.js"
+import {listarUsuarioRepository, obtenerUsuarioPorCorreoYPassword, crearUsuarioRepository, modificarUsuarioRepository } from "../repository/UsersRepository.js"
 
 import { CODIGO_ERROR, USUARIO_COD_NO_ENCONTRADO, USUARIO_COD_SIN_PRIVILEGIOS, 
     USUARIO_COD_CORREO_REQUERIDO, USUARIO_COD_PASSWORD_REQUERIDO, USUARIO_COD_ROL_REQUERIDO,
@@ -40,7 +40,6 @@ export const crearUsuario = async (req, res) => {
 
     try {
         const { body: { id_rol, nombre, apellido, email, password } } = req;
-        console.log(apellido);
         /* I- Validacion de datos */ 
         if( id_rol === undefined ){
             return {mensaje: USUARIO_ROL_REQUERIDO, codigo: USUARIO_COD_ROL_REQUERIDO};
@@ -70,6 +69,25 @@ export const crearUsuario = async (req, res) => {
 export const modificarUsuario = async (req, res) => {
 
     try {
+        const { body: { id_rol, nombre, apellido, email, password } } = req;
+        /* I- Validacion de datos */ 
+        if( id_rol === undefined ){
+            return {mensaje: USUARIO_ROL_REQUERIDO, codigo: USUARIO_COD_ROL_REQUERIDO};
+        }
+        if( nombre === undefined ){
+            return {mensaje: USUARIO_NOMBRE_REQUERIDO, codigo: USUARIO_COD_NOMBRE_REQUERIDO};
+        }
+        if( apellido === undefined ){
+            return {mensaje: USUARIO_APELLIDO_REQUERIDO, codigo: USUARIO_COD_APELLIDO_REQUERIDO};
+        }
+        if( email === undefined ){
+            return {mensaje: USUARIO_CORREO_REQUERIDO, codigo: USUARIO_COD_CORREO_REQUERIDO};
+        }
+        if( password === undefined ){
+            return {mensaje: USUARIO_PASSWORD_REQUERIDO, codigo: USUARIO_COD_PASSWORD_REQUERIDO};
+        }
+        /* F- Validacion de datos */
+
         const oRespuesta = await modificarUsuarioRepository(req);
         return oRespuesta;
     } catch (error) {

@@ -40,11 +40,11 @@ export const crearUsuarioRepository = async (req) => {
 }
 
 // metodo para modificar un usuario 
-const modificarUsuarioRepository = async (req) => {
+export const modificarUsuarioRepository = async (req) => {
     try {
-        const { body: { nombre, email, password, id_rol }, params: {id} } = req;
-        const sql = 'UPDATE usuarios SET nombre = ?, email = ?, password = ?, id_rol = ? WHERE id_usuario= ? ';
-        await pool.execute(sql, [nombre, email, password, id_rol, id]);
+        const { body: { id_rol, nombre, apellido, email, password }, params: {id} } = req;
+        const sql = 'UPDATE usuario SET id_rol = ?, nombre = ?, apellido = ?, email = ?, password = ?  WHERE id_usuario= ? ';
+        await pool.execute(sql, [id_rol, nombre, apellido, email, password, id]);
 
         return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};
     } catch (error) {
