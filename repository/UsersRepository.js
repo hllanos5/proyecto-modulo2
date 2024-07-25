@@ -26,26 +26,12 @@ export const obtenerUsuarioPorCorreoYPassword = async (email, password) => {
     }
 }
 
-// metodo para obtener un usuario con roles
-const obtenerUsuarioConRolesRepository = async (req) => {
-    try {
-        const {params, query, body, headers} = req;
-        const sql = 'select u.*, r.id_rol,r.nombre_rol from usuarios u inner join roles r on (u.id_rol = r.id_rol) WHERE u.id_usuario = ?';
-        const [rs] = await pool.execute(sql, [params.id]);
-
-        return {resultado: rs, mensaje: MENSAJE_OK, codigo: CODIGO_OK};
-    } catch (error) {
-        return {mensaje: error.message, codigo: CODIGO_ERROR}
-    }
-}
-
-
 // metodo para crear un usuario
-const crearUsuarioRepository = async (req) => {
+export const crearUsuarioRepository = async (req) => {
     try {
-        const { body: { nombre, email, password, id_rol } } = req;
-        const sql = 'INSERT INTO usuarios (`nombre`, `email`, `password`, `id_rol`) VALUES (?,?,?,?)';
-        await pool.execute(sql, [nombre, email, password, id_rol]);
+        const { body: { id_rol, nombre, apellido, email, password } } = req;
+        const sql = 'INSERT INTO usuario (`id_rol`, `nombre`, `apellido`, `email`, `password`) VALUES (?,?,?,?,?)';
+        await pool.execute(sql, [id_rol, nombre, apellido, email, password]);
 
         return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};
     } catch (error) {

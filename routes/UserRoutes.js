@@ -1,6 +1,6 @@
 
 import { Router } from 'express'
-import { listarUsuario, listarUsuarioConRoles, obtenerUsuarioConRoles, crearUsuario, modificarUsuario, eliminarUsuario, modificarUsuarioImagen } from '../controller/UsersController.js'
+import { listarUsuario,  crearUsuario, modificarUsuario, eliminarUsuario, modificarUsuarioImagen } from '../controller/UsersController.js'
 import { CODIGO_OK, CODIGO_ERROR } from '../config/CodigosConfig.js';
 
 export const userRoutes = Router()
@@ -9,36 +9,6 @@ export const userRoutes = Router()
 userRoutes.get('/', async (req, res, next) => {
     try {
         const oRespuesta = await listarUsuario(req);
-        if (oRespuesta.codigo === CODIGO_OK) {
-            return res.status(200).json(oRespuesta);
-        }
-        else {
-            return res.status(400).json(oRespuesta);
-        }
-    } catch (error) {
-        return res.status(500).json({mensaje: error.message, codigo: CODIGO_ERROR})
-    }
-})
-
-//Muestra todos los usuarios y roles
-userRoutes.get('/users-rol', async (req, res, next) => {
-    try {
-        const oRespuesta = await listarUsuarioConRoles();
-        if (oRespuesta.codigo === CODIGO_OK) {
-            return res.status(200).json(oRespuesta);
-        }
-        else {
-            return res.status(400).json(oRespuesta);
-        }
-    } catch (error) {
-        return res.status(500).json({mensaje: error.message, codigo: CODIGO_ERROR})
-    }
-})
-
-//Muestra un usuario
-userRoutes.get('/:id', async (req, res, next) => {
-    try {
-        const oRespuesta = await obtenerUsuarioConRoles(req);
         if (oRespuesta.codigo === CODIGO_OK) {
             return res.status(200).json(oRespuesta);
         }
@@ -64,6 +34,7 @@ userRoutes.post('/', async (req, res, next) => {
         return res.status(500).json({mensaje: error.message, codigo: CODIGO_ERROR})
     }
 })
+
 
 //Actualiza el usuario
 userRoutes.put('/:id', async (req, res, next) => {
