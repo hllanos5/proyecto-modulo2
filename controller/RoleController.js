@@ -1,4 +1,4 @@
-import { listarRolRepository, crearRolRepository, modificarRolRepository } from "../repository/RoleRepository.js"
+import { listarRolRepository, crearRolRepository, modificarRolRepository, eliminarRolRepository } from "../repository/RoleRepository.js"
 import { obtenerUsuarioPorCorreoYPassword } from "../repository/UsersRepository.js"
 
 import { CODIGO_ERROR, USUARIO_COD_NO_ENCONTRADO, USUARIO_COD_SIN_PRIVILEGIOS, 
@@ -70,6 +70,23 @@ export const modificarRol = async (req, res) => {
         /* F- Validacion de datos */
 
         const oRespuesta = await modificarRolRepository(req);
+        return oRespuesta;
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}
+
+
+export const eliminarRol = async (req, res) => {
+
+    try {
+        const { params: { id } } = req;
+        /* I- Validacion de datos */ 
+        if( id === undefined ){
+            return {mensaje: ROL_ID_REQUERIDO, codigo: ROL_COD_ID_REQUERIDO};
+        }
+        /* F- Validacion de datos */
+        const oRespuesta = await eliminarRolRepository(req);
         return oRespuesta;
     } catch (error) {
         return {mensaje: error.message, codigo: CODIGO_ERROR}

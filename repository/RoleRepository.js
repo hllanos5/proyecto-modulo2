@@ -39,3 +39,16 @@ export const modificarRolRepository = async (req) => {
         return {mensaje: error.message, codigo: CODIGO_ERROR}
     }
 }
+
+// metodo para eliminar un rol en nuestro caso solo cambiaremos de estado
+export const eliminarRolRepository = async (req) => {
+    try {
+        const { params: { id } } = req;
+        const sql = 'UPDATE rol SET estado = 0 WHERE id_rol= ? ';
+        await pool.execute(sql, [id]);
+
+        return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}
