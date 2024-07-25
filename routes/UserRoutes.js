@@ -1,6 +1,6 @@
 
 import { Router } from 'express'
-import { listarUsuario,  crearUsuario, modificarUsuario, eliminarUsuario, modificarUsuarioImagen } from '../controller/UsersController.js'
+import { listarUsuario,  crearUsuario, modificarUsuario, eliminarUsuario } from '../controller/UsersController.js'
 import { CODIGO_OK, CODIGO_ERROR } from '../config/CodigosConfig.js';
 
 export const userRoutes = Router()

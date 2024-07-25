@@ -114,13 +114,3 @@ export const eliminarUsuario = async (req, res) => {
         return {mensaje: error.message, codigo: CODIGO_ERROR}
     }
 }
-
-export const modificarUsuarioImagen = async (req, res) => {
-
-    try {
-        const oRespuesta = await modificarImagenUsuarioRepository(req);
-        return oRespuesta;
-    } catch (error) {
-        return {mensaje: error.message, codigo: CODIGO_ERROR}
-    }
-}
