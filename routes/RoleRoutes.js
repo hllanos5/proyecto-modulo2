@@ -1,6 +1,6 @@
 
 import { Router } from 'express'
-import { listarRol } from '../controller/RoleController.js'
+import { listarRol, crearRol } from '../controller/RoleController.js'
 import { CODIGO_OK, CODIGO_ERROR } from '../config/CodigosConfig.js';
 
 export const roleRoutes = Router()
@@ -11,6 +11,22 @@ roleRoutes.get('/', async (req, res, next) => {
         const oRespuesta = await listarRol(req);
         if (oRespuesta.codigo === CODIGO_OK) {
             return res.status(200).json(oRespuesta);
+        }
+        else {
+            return res.status(400).json(oRespuesta);
+        }
+    } catch (error) {
+        return res.status(500).json({mensaje: error.message, codigo: CODIGO_ERROR})
+    }
+})
+
+
+//Insertar Usuario
+roleRoutes.post('/', async (req, res, next) => {
+    try {
+        const oRespuesta = await crearRol(req);
+        if (oRespuesta.codigo === CODIGO_OK) {
+            return res.status(201).json(oRespuesta);
         }
         else {
             return res.status(400).json(oRespuesta);

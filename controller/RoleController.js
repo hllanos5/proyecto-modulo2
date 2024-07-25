@@ -1,11 +1,11 @@
-import { listarRolRepository } from "../repository/RoleRepository.js"
+import { listarRolRepository, crearRolRepository } from "../repository/RoleRepository.js"
 import { obtenerUsuarioPorCorreoYPassword } from "../repository/UsersRepository.js"
 
 import { CODIGO_ERROR, USUARIO_COD_NO_ENCONTRADO, USUARIO_COD_SIN_PRIVILEGIOS, 
-    USUARIO_COD_CORREO_REQUERIDO, USUARIO_COD_PASSWORD_REQUERIDO } from '../config/CodigosConfig.js';
+    USUARIO_COD_CORREO_REQUERIDO, USUARIO_COD_PASSWORD_REQUERIDO, ROL_COD_NOMBRE_REQUERIDO } from '../config/CodigosConfig.js';
 
 import { USUARIO_NO_ENCONTRADO, USUARIO_SIN_PRIVILEGIOS, USUARIO_CORREO_REQUERIDO,
-    USUARIO_PASSWORD_REQUERIDO } from '../config/MensajesConfig.js';
+    USUARIO_PASSWORD_REQUERIDO, ROL_NOMBRE_REQUERIDO } from '../config/MensajesConfig.js';
 
 
 export const listarRol = async (req, res) => {
@@ -30,6 +30,24 @@ export const listarRol = async (req, res) => {
         }
 
         const oRespuesta = await listarRolRepository();
+        return oRespuesta;
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}
+
+
+export const crearRol = async (req, res) => {
+
+    try {
+        const { body: { nombre } } = req;
+        /* I- Validacion de datos */ 
+        if( nombre === undefined ){
+            return {mensaje: ROL_NOMBRE_REQUERIDO, codigo: ROL_COD_NOMBRE_REQUERIDO};
+        }
+        /* F- Validacion de datos */
+
+        const oRespuesta = await crearRolRepository(req);
         return oRespuesta;
     } catch (error) {
         return {mensaje: error.message, codigo: CODIGO_ERROR}
