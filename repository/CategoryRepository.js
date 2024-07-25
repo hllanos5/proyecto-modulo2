@@ -3,7 +3,7 @@ import { CODIGO_OK, CODIGO_ERROR } from '../config/CodigosConfig.js';
 import { MENSAJE_OK} from '../config/MensajesConfig.js';
 
 /* metodo para listar usuario */
-export const listarCategoryRepository = async () => {
+export const listarCategoriaRepository = async () => {
     try {
         const sql = 'SELECT * FROM categoria';
         const [rs] = await pool.execute(sql);
@@ -14,24 +14,11 @@ export const listarCategoryRepository = async () => {
     }
 }
 
-// metodo para obtener usuario por correo y contraseña
-export const obtenerUsuarioPorCorreoYPassword = async (email, password) => {
+// metodo para crear un rol
+export const crearCategoriaRepository = async (nombre) => {
     try {
-        const sql = 'select * from usuario where  email = ? and password= ?';
-        const [rs] = await pool.execute(sql, [email, password]);
-
-        return {resultado: rs, mensaje: MENSAJE_OK, codigo: CODIGO_OK};
-    } catch (error) {
-        return {mensaje: error.message, codigo: CODIGO_ERROR}
-    }
-}
-
-// metodo para crear un usuario
-export const crearUsuarioRepository = async (req) => {
-    try {
-        const { body: { id_rol, nombre, apellido, email, password } } = req;
-        const sql = 'INSERT INTO usuario (`id_rol`, `nombre`, `apellido`, `email`, `password`) VALUES (?,?,?,?,?)';
-        await pool.execute(sql, [id_rol, nombre, apellido, email, password]);
+        const sql = 'INSERT INTO categoria (`nombre`) VALUES (?)';
+        await pool.execute(sql, [ nombre ]);
 
         return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};
     } catch (error) {
@@ -39,12 +26,12 @@ export const crearUsuarioRepository = async (req) => {
     }
 }
 
-// metodo para modificar un usuario 
-export const modificarUsuarioRepository = async (req) => {
+// metodo para modificar un rol 
+export const modificarRolRepository = async (req) => {
     try {
-        const { body: { id_rol, nombre, apellido, email, password }, params: {id} } = req;
-        const sql = 'UPDATE usuario SET id_rol = ?, nombre = ?, apellido = ?, email = ?, password = ?  WHERE id_usuario= ? ';
-        await pool.execute(sql, [id_rol, nombre, apellido, email, password, id]);
+        const { body: { nombre }, params: {id} } = req;
+        const sql = 'UPDATE rol SET nombre = ? WHERE id_rol= ? ';
+        await pool.execute(sql, [nombre, id]);
 
         return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};
     } catch (error) {
@@ -52,11 +39,11 @@ export const modificarUsuarioRepository = async (req) => {
     }
 }
 
-// metodo para eliminar un usuario en nuestro caso solo cambiaremos de estado
-export const eliminarUsuarioRepository = async (req) => {
+// metodo para eliminar un rol en nuestro caso solo cambiaremos de estado
+export const eliminarRolRepository = async (req) => {
     try {
         const { params: { id } } = req;
-        const sql = 'UPDATE usuario SET estado = 0 WHERE id_usuario= ? ';
+        const sql = 'UPDATE rol SET estado = 0 WHERE id_rol= ? ';
         await pool.execute(sql, [id]);
 
         return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};

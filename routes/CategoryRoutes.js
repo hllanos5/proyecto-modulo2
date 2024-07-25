@@ -1,6 +1,6 @@
 
 import { Router } from 'express'
-import { listarCategory} from '../controller/CategoryController.js'
+import { listarCategoria, crearCategoria} from '../controller/CategoryController.js'
 import { CODIGO_OK, CODIGO_ERROR } from '../config/CodigosConfig.js';
 
 export const categoryRoutes = Router()
@@ -8,7 +8,7 @@ export const categoryRoutes = Router()
 //Muestra todos los usuarios
 categoryRoutes.get('/', async (req, res, next) => {
     try {
-        const oRespuesta = await listarCategory(req);
+        const oRespuesta = await listarCategoria(req);
         if (oRespuesta.codigo === CODIGO_OK) {
             return res.status(200).json(oRespuesta);
         }
@@ -23,7 +23,7 @@ categoryRoutes.get('/', async (req, res, next) => {
 //Insertar Usuario
 categoryRoutes.post('/', async (req, res, next) => {
     try {
-        const oRespuesta = await crearUsuario(req);
+        const oRespuesta = await crearCategoria(req);
         if (oRespuesta.codigo === CODIGO_OK) {
             return res.status(201).json(oRespuesta);
         }
