@@ -1,6 +1,6 @@
 
 import { Router } from 'express'
-import { listarCategoria, crearCategoria, modificarCategoria} from '../controller/CategoryController.js'
+import { listarCategoria, crearCategoria, modificarCategoria, eliminarCategoria} from '../controller/CategoryController.js'
 import { CODIGO_OK, CODIGO_ERROR } from '../config/CodigosConfig.js';
 
 export const categoryRoutes = Router()
@@ -54,7 +54,7 @@ categoryRoutes.put('/:id', async (req, res, next) => {
 //Borra los usuarios
 categoryRoutes.delete('/:id',async (req, res, next) => {
     try {
-        const oRespuesta = await eliminarUsuario(req);
+        const oRespuesta = await eliminarCategoria(req);
         if (oRespuesta.codigo === CODIGO_OK) {
             return res.status(200).json(oRespuesta);
         }
