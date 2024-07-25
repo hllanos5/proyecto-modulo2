@@ -1,4 +1,5 @@
-import {listarUsuarioRepository, obtenerUsuarioPorCorreoYPassword, crearUsuarioRepository, modificarUsuarioRepository } from "../repository/UsersRepository.js"
+import {listarUsuarioRepository, obtenerUsuarioPorCorreoYPassword, crearUsuarioRepository,
+     modificarUsuarioRepository, eliminarUsuarioRepository } from "../repository/UsersRepository.js"
 
 import { CODIGO_ERROR, USUARIO_COD_NO_ENCONTRADO, USUARIO_COD_SIN_PRIVILEGIOS, 
     USUARIO_COD_CORREO_REQUERIDO, USUARIO_COD_PASSWORD_REQUERIDO, USUARIO_COD_ROL_REQUERIDO,
@@ -69,8 +70,11 @@ export const crearUsuario = async (req, res) => {
 export const modificarUsuario = async (req, res) => {
 
     try {
-        const { body: { id_rol, nombre, apellido, email, password } } = req;
+        const { body: { id_rol, nombre, apellido, email, password }, params: { id }  } = req;
         /* I- Validacion de datos */ 
+        if( id === undefined ){
+            return {mensaje: USUARIO_ID_REQUERIDO, codigo: USUARIO_COD_ID_REQUERIDO};
+        }
         if( id_rol === undefined ){
             return {mensaje: USUARIO_ROL_REQUERIDO, codigo: USUARIO_COD_ROL_REQUERIDO};
         }
@@ -98,6 +102,12 @@ export const modificarUsuario = async (req, res) => {
 export const eliminarUsuario = async (req, res) => {
 
     try {
+        const { params: { id } } = req;
+        /* I- Validacion de datos */ 
+        if( id === undefined ){
+            return {mensaje: USUARIO_ID_REQUERIDO, codigo: USUARIO_COD_ID_REQUERIDO};
+        }
+        /* F- Validacion de datos */
         const oRespuesta = await eliminarUsuarioRepository(req);
         return oRespuesta;
     } catch (error) {

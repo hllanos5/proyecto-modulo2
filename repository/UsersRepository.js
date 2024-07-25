@@ -52,11 +52,11 @@ export const modificarUsuarioRepository = async (req) => {
     }
 }
 
-// metodo para eliminar un usuario 
-const eliminarUsuarioRepository = async (req) => {
+// metodo para eliminar un usuario en nuestro caso solo cambiaremos de estado
+export const eliminarUsuarioRepository = async (req) => {
     try {
         const { params: { id } } = req;
-        const sql = 'DELETE FROM usuarios WHERE id_usuario= ? ';
+        const sql = 'UPDATE usuario SET estado = 0 WHERE id_usuario= ? ';
         await pool.execute(sql, [id]);
 
         return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};
