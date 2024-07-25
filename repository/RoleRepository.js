@@ -5,7 +5,7 @@ import { MENSAJE_OK} from '../config/MensajesConfig.js';
 /* metodo para listar rol */
 const listarRolRepository = async () => {
     try {
-        const sql = 'SELECT * FROM roles';
+        const sql = 'SELECT * FROM rol';
         const [rs] = await pool.execute(sql);
 
         return {resultado: rs, mensaje: MENSAJE_OK, codigo: CODIGO_OK};
