@@ -12,7 +12,7 @@ import { USUARIO_NO_ENCONTRADO, USUARIO_SIN_PRIVILEGIOS, USUARIO_CORREO_REQUERID
 export const listarUsuario = async (req, res) => {
 
     try {
-        const { body: { email, password } } = req;
+        const { headers: { email, password } } = req;
         /* I- Validacion de datos */ 
         if( email === undefined ){
             return {mensaje: USUARIO_CORREO_REQUERIDO, codigo: USUARIO_COD_CORREO_REQUERIDO};
