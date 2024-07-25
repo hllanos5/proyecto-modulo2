@@ -1,6 +1,6 @@
 
 import { Router } from 'express'
-import { listarCategoria, crearCategoria} from '../controller/CategoryController.js'
+import { listarCategoria, crearCategoria, modificarCategoria} from '../controller/CategoryController.js'
 import { CODIGO_OK, CODIGO_ERROR } from '../config/CodigosConfig.js';
 
 export const categoryRoutes = Router()
@@ -39,7 +39,7 @@ categoryRoutes.post('/', async (req, res, next) => {
 //Actualiza el usuario
 categoryRoutes.put('/:id', async (req, res, next) => {
     try {
-        const oRespuesta = await modificarUsuario(req);
+        const oRespuesta = await modificarCategoria(req);
         if (oRespuesta.codigo === CODIGO_OK) {
             return res.status(200).json(oRespuesta);
         }

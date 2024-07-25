@@ -27,10 +27,9 @@ export const crearCategoriaRepository = async (nombre) => {
 }
 
 // metodo para modificar un rol 
-export const modificarRolRepository = async (req) => {
+export const modificarCategoriaRepository = async (nombre, id) => {
     try {
-        const { body: { nombre }, params: {id} } = req;
-        const sql = 'UPDATE rol SET nombre = ? WHERE id_rol= ? ';
+        const sql = 'UPDATE categoria SET nombre = ? WHERE id_categoria= ? ';
         await pool.execute(sql, [nombre, id]);
 
         return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};
