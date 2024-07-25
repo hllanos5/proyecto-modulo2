@@ -3,9 +3,9 @@ import { CODIGO_OK, CODIGO_ERROR } from '../config/CodigosConfig.js';
 import { MENSAJE_OK} from '../config/MensajesConfig.js';
 
 /* metodo para listar usuario */
-const listarUsuarioRepository = async () => {
+export const listarUsuarioRepository = async () => {
     try {
-        const sql = 'SELECT * FROM usuarios';
+        const sql = 'SELECT * FROM usuario';
         const [rs] = await pool.execute(sql);
 
         return {resultado: rs, mensaje: MENSAJE_OK, codigo: CODIGO_OK};
@@ -14,11 +14,11 @@ const listarUsuarioRepository = async () => {
     }
 }
 
-// metodo para listar usuario con roles
-const listarUsuarioConRolesRepository = async () => {
+// metodo para obtener usuario por correo y contraseña
+export const obtenerUsuarioPorCorreoYPassword = async (email, password) => {
     try {
-        const sql = 'select u.*, r.id_rol,r.nombre_rol from usuarios u inner join roles r on (u.id_rol = r.id_rol)';
-        const [rs] = await pool.execute(sql);
+        const sql = 'select * from usuario where  email = ? and password= ?';
+        const [rs] = await pool.execute(sql, [email, password]);
 
         return {resultado: rs, mensaje: MENSAJE_OK, codigo: CODIGO_OK};
     } catch (error) {
@@ -93,6 +93,3 @@ const modificarImagenUsuarioRepository = async (req) => {
         return {mensaje: error.message, codigo: CODIGO_ERROR}
     }
 }
-
-export  {listarUsuarioRepository, listarUsuarioConRolesRepository, obtenerUsuarioConRolesRepository,
-        crearUsuarioRepository, modificarUsuarioRepository, eliminarUsuarioRepository, modificarImagenUsuarioRepository}

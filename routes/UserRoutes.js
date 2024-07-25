@@ -8,7 +8,7 @@ export const userRoutes = Router()
 //Muestra todos los usuarios
 userRoutes.get('/', async (req, res, next) => {
     try {
-        const oRespuesta = await listarUsuario();
+        const oRespuesta = await listarUsuario(req);
         if (oRespuesta.codigo === CODIGO_OK) {
             return res.status(200).json(oRespuesta);
         }
