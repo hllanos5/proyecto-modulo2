@@ -2,7 +2,7 @@ import pool from "../bd/Pool.js"
 import { CODIGO_OK, CODIGO_ERROR } from '../config/CodigosConfig.js';
 import { MENSAJE_OK} from '../config/MensajesConfig.js';
 
-/* metodo para listar usuario */
+/* metodo para listar categoria */
 export const listarCategoriaRepository = async () => {
     try {
         const sql = 'SELECT * FROM categoria';
@@ -14,7 +14,7 @@ export const listarCategoriaRepository = async () => {
     }
 }
 
-// metodo para crear un rol
+// metodo para crear un categoria
 export const crearCategoriaRepository = async (nombre) => {
     try {
         const sql = 'INSERT INTO categoria (`nombre`) VALUES (?)';
@@ -26,7 +26,7 @@ export const crearCategoriaRepository = async (nombre) => {
     }
 }
 
-// metodo para modificar un rol 
+// metodo para modificar una categoria 
 export const modificarCategoriaRepository = async (nombre, id) => {
     try {
         const sql = 'UPDATE categoria SET nombre = ? WHERE id_categoria= ? ';
@@ -38,7 +38,7 @@ export const modificarCategoriaRepository = async (nombre, id) => {
     }
 }
 
-// metodo para eliminar un rol en nuestro caso solo cambiaremos de estado
+// metodo para eliminar un Categoria en nuestro caso solo cambiaremos de estado
 export const eliminarCategoriaRepository = async (req) => {
     try {
         const { params: { id } } = req;
@@ -46,6 +46,18 @@ export const eliminarCategoriaRepository = async (req) => {
         await pool.execute(sql, [id]);
 
         return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}
+
+/* metodo para obtener categoria */
+export const obtenerCategorianRepository = async (id) => {
+    try {
+        const sql = 'SELECT * FROM categoria WHERE id_categoria = ? ';
+        const [rs] = await pool.execute(sql, [id]);
+
+        return {resultado: rs, mensaje: MENSAJE_OK, codigo: CODIGO_OK};
     } catch (error) {
         return {mensaje: error.message, codigo: CODIGO_ERROR}
     }

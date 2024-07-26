@@ -49,3 +49,25 @@ export const eliminarPublicacionRepository = async (id) => {
         return {mensaje: error.message, codigo: CODIGO_ERROR}
     }
 }
+
+export const obtenerUltimaPublicacionRepository = async () => {
+    try {
+        const sql = 'select * from publicacion  order by 1 desc limit 1';
+        const [rs] = await pool.execute(sql);
+
+        return {mensaje: MENSAJE_OK, codigo: CODIGO_OK, resultado: rs};
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}
+
+export const insertarCategoriaPublicacionRepository = async (id_publicacion, id_categoria) => {
+    try {
+        const sql = 'insert into categoria_publicacion (id_publicacion, id_categoria) VALUES (?,?) ';
+        await pool.execute(sql, [id_publicacion, id_categoria]);
+
+        return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}
