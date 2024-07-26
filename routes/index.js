@@ -2,6 +2,7 @@ import { Router } from "express";
 import { userRoutes } from "./UserRoutes.js";
 import { roleRoutes } from "./RoleRoutes.js";
 import { categoryRoutes } from "./CategoryRoutes.js";
+import { publicationRoutes } from "./PublicationRoutes.js";
 
 const API_router = Router();
 
@@ -14,5 +15,7 @@ export const router = (app) => {
     API_router.use('/roles', roleRoutes);
     //Importar la ruta de Roles
     API_router.use('/category', categoryRoutes);
+    //Importar la ruta de Publicaciones
+    API_router.use('/publication', publicationRoutes);
 
 }
