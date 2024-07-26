@@ -37,3 +37,15 @@ export const obtenerComentarioRepository = async (id) => {
         return {mensaje: error.message, codigo: CODIGO_ERROR}
     }
 }
+
+// metodo para eliminar un ccomentario en nuestro caso solo cambiaremos de estado
+export const eliminarComentarioRepository = async (id_comentario) => {
+    try {
+        const sql = 'UPDATE comentario SET estado = 0 WHERE id_comentario= ? ';
+        await pool.execute(sql, [id_comentario]);
+
+        return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}
