@@ -26,7 +26,7 @@ export const crearPublicacionRepository = async (id_usuario, titulo, descripcion
     }
 }
 
-// metodo para modificar un rol 
+// metodo para modificar una publicacion 
 export const modificarCategoriaRepository = async (titulo, descripcion, id_publicacion) => {
     try {
         const sql = 'UPDATE publicacion SET titulo = ?, descripcion = ? WHERE id_publicacion= ? ';
@@ -38,11 +38,10 @@ export const modificarCategoriaRepository = async (titulo, descripcion, id_publi
     }
 }
 
-// metodo para eliminar un rol en nuestro caso solo cambiaremos de estado
-export const eliminarCategoriaRepository = async (req) => {
+// metodo para eliminar una publicacion en nuestro caso solo cambiaremos de estado
+export const eliminarPublicacionRepository = async (id) => {
     try {
-        const { params: { id } } = req;
-        const sql = 'UPDATE categoria SET estado = 0 WHERE id_categoria= ? ';
+        const sql = 'UPDATE publicacion SET estado = 0 WHERE id_publicacion= ? ';
         await pool.execute(sql, [id]);
 
         return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};
