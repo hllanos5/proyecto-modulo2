@@ -49,3 +49,15 @@ export const eliminarComentarioRepository = async (id_comentario) => {
         return {mensaje: error.message, codigo: CODIGO_ERROR}
     }
 }
+
+/* metodo para obtener publicacion */
+export const listarComentarioPorIdPublicacionRepository = async (id_publicacion) => {
+    try {
+        const sql = 'SELECT * FROM comentario WHERE id_publicacion = ? ';
+        const [rs] = await pool.execute(sql, [id_publicacion]);
+
+        return {resultado: rs, mensaje: MENSAJE_OK, codigo: CODIGO_OK};
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}

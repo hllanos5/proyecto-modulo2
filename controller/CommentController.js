@@ -1,5 +1,5 @@
 import { crearComentarioRepository, modificarComentarioRepository, 
-    obtenerComentarioRepository, eliminarComentarioRepository} from "../repository/CommentRepository.js"
+    obtenerComentarioRepository, eliminarComentarioRepository, listarComentarioPorIdPublicacionRepository} from "../repository/CommentRepository.js"
 import {obtenerUsuarioPorCorreoYPassword } from "../repository/UsersRepository.js"
 
 import { CODIGO_ERROR, USUARIO_COD_NO_ENCONTRADO, 
@@ -135,6 +135,16 @@ export const eliminarComentario = async (req, res) => {
         /* F - Validacion de usuario perteneciente a comentario*/
 
         const oRespuesta = await eliminarComentarioRepository(id);
+        return oRespuesta;
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}
+
+export const listarComentariosPorIdPublicacion = async (req, res) => {
+    const { params: { id }} = req;
+    try {
+        const oRespuesta = await listarComentarioPorIdPublicacionRepository(id);
         return oRespuesta;
     } catch (error) {
         return {mensaje: error.message, codigo: CODIGO_ERROR}

@@ -1,6 +1,6 @@
 
 import { Router } from 'express'
-import { crearComentario, modificarComentario, eliminarComentario } from '../controller/CommentController.js'
+import { crearComentario, modificarComentario, eliminarComentario, listarComentariosPorIdPublicacion} from '../controller/CommentController.js'
 import { CODIGO_OK, CODIGO_ERROR } from '../config/CodigosConfig.js';
 
 export const commentRoutes = Router()
@@ -39,6 +39,21 @@ commentRoutes.put('/:id', async (req, res, next) => {
 commentRoutes.delete('/:id',async (req, res, next) => {
     try {
         const oRespuesta = await eliminarComentario(req);
+        if (oRespuesta.codigo === CODIGO_OK) {
+            return res.status(200).json(oRespuesta);
+        }
+        else {
+            return res.status(400).json(oRespuesta);
+        }
+    } catch (error) {
+        return res.status(500).json({mensaje: error.message, codigo: CODIGO_ERROR})
+    }
+})
+
+//Muestra todos los comentario por id publicacion
+commentRoutes.get('/publication/:id', async (req, res, next) => {
+    try {
+        const oRespuesta = await listarComentariosPorIdPublicacion(req);
         if (oRespuesta.codigo === CODIGO_OK) {
             return res.status(200).json(oRespuesta);
         }
