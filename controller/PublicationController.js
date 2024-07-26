@@ -1,5 +1,6 @@
 import { crearPublicacionRepository, obtenerPublicacionRepository, modificarCategoriaRepository,
-     eliminarPublicacionRepository, obtenerUltimaPublicacionRepository, insertarCategoriaPublicacionRepository } from "../repository/PublicationRepository.js"
+     eliminarPublicacionRepository, obtenerUltimaPublicacionRepository,
+     insertarCategoriaPublicacionRepository, modificarCategoriaPublicacionRepository } from "../repository/PublicationRepository.js"
 import { obtenerUsuarioPorCorreoYPassword } from "../repository/UsersRepository.js"
 import { obtenerCategorianRepository } from "../repository/CategoryRepository.js"
 
@@ -65,7 +66,7 @@ export const crearPublicacion = async (req, res) => {
 export const modificarPublicacion = async (req, res) => {
 
     try {
-        const { body: { titulo, descripcion }, params: { id }, headers:{ email, password}  } = req;
+        const { body: { titulo, descripcion, id_categoria }, params: { id }, headers:{ email, password}  } = req;
         /* I- Validacion de datos */ 
         if( id === undefined ){
             return {mensaje: PUBLICACION_ID_REQUERIDO, codigo: PUBLICACION_COD_ID};
@@ -81,6 +82,9 @@ export const modificarPublicacion = async (req, res) => {
         }
         if( descripcion === undefined ){
             return {mensaje: PUBLICACION_DESCRIPCION_REQUERIDO, codigo: PUBLICACION_COD_DESCRIPCION};
+        }
+        if( id_categoria === undefined ){
+            return {mensaje: CATEGORIA_ID_REQUERIDO, codigo: CATEGORIA_COD_ID_REQUERIDO};
         }
         /* F- Validacion de datos */
 
@@ -104,6 +108,7 @@ export const modificarPublicacion = async (req, res) => {
         /* F - Validacion de usuario perteneciente a publicacion*/
 
         const oRespuesta = await modificarCategoriaRepository(titulo, descripcion, id);
+        await modificarCategoriaPublicacionRepository(id_categoria, id);
         return oRespuesta;
     } catch (error) {
         return {mensaje: error.message, codigo: CODIGO_ERROR}

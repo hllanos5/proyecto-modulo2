@@ -71,3 +71,14 @@ export const insertarCategoriaPublicacionRepository = async (id_publicacion, id_
         return {mensaje: error.message, codigo: CODIGO_ERROR}
     }
 }
+
+export const modificarCategoriaPublicacionRepository = async (id_categoria,id_publicacion) => {
+    try {
+        const sql = 'update categoria_publicacion set id_categoria = ? WHERE id_publicacion = ? ';
+        await pool.execute(sql, [id_categoria, id_publicacion]);
+
+        return {mensaje: MENSAJE_OK, codigo: CODIGO_OK};
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}
