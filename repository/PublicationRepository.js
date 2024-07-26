@@ -82,3 +82,18 @@ export const modificarCategoriaPublicacionRepository = async (id_categoria,id_pu
         return {mensaje: error.message, codigo: CODIGO_ERROR}
     }
 }
+
+export const listarPublicacionRepository = async () => {
+    try {
+        const sql = `select p.*, c.* from publicacion p 
+                    inner join categoria_publicacion  cp
+                    on ( p.id_publicacion = cp.id_publicacion)
+                    inner join categoria c 
+                    on (c.id_categoria = cp.id_categoria)`;
+        const [rs] = await pool.execute(sql);
+
+        return {mensaje: MENSAJE_OK, codigo: CODIGO_OK, resultado: rs};
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}

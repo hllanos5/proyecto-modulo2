@@ -1,6 +1,7 @@
 import { crearPublicacionRepository, obtenerPublicacionRepository, modificarCategoriaRepository,
      eliminarPublicacionRepository, obtenerUltimaPublicacionRepository,
-     insertarCategoriaPublicacionRepository, modificarCategoriaPublicacionRepository } from "../repository/PublicationRepository.js"
+     insertarCategoriaPublicacionRepository, modificarCategoriaPublicacionRepository,
+     listarPublicacionRepository } from "../repository/PublicationRepository.js"
 import { obtenerUsuarioPorCorreoYPassword } from "../repository/UsersRepository.js"
 import { obtenerCategorianRepository } from "../repository/CategoryRepository.js"
 
@@ -151,6 +152,17 @@ export const eliminarPublicacion = async (req, res) => {
         /* F - Validacion de usuario perteneciente a publicacion*/
 
         const oRespuesta = await eliminarPublicacionRepository(id);
+        return oRespuesta;
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}
+
+
+export const listarPublicacion = async (req, res) => {
+
+    try {
+        const oRespuesta = await listarPublicacionRepository();
         return oRespuesta;
     } catch (error) {
         return {mensaje: error.message, codigo: CODIGO_ERROR}
