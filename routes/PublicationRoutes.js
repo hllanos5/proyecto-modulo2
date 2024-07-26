@@ -1,6 +1,7 @@
 
 import { Router } from 'express'
-import { crearPublicacion, modificarPublicacion, eliminarPublicacion, listarPublicacion, listarPublicacionPorCategoria } from '../controller/PublicationController.js'
+import { crearPublicacion, modificarPublicacion, eliminarPublicacion, listarPublicacion,
+     listarPublicacionPorCategoria, listarPublicacionPorTitulo } from '../controller/PublicationController.js'
 import { CODIGO_OK, CODIGO_ERROR } from '../config/CodigosConfig.js';
 
 export const publicationRoutes = Router()
@@ -65,7 +66,7 @@ publicationRoutes.get('/', async (req, res, next) => {
     }
 })
 
-//Listar publicaciones
+//Listar publicaciones por categoria
 publicationRoutes.get('/category/:id', async (req, res, next) => {
     try {
         const oRespuesta = await listarPublicacionPorCategoria(req);
@@ -80,3 +81,17 @@ publicationRoutes.get('/category/:id', async (req, res, next) => {
     }
 })
 
+//Listar publicaciones por titulo
+publicationRoutes.get('/titulo', async (req, res, next) => {
+    try {
+        const oRespuesta = await listarPublicacionPorTitulo(req);
+        if (oRespuesta.codigo === CODIGO_OK) {
+            return res.status(200).json(oRespuesta);
+        }
+        else {
+            return res.status(400).json(oRespuesta);
+        }
+    } catch (error) {
+        return res.status(500).json({mensaje: error.message, codigo: CODIGO_ERROR})
+    }
+})

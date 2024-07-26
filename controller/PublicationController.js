@@ -1,7 +1,7 @@
 import { crearPublicacionRepository, obtenerPublicacionRepository, modificarCategoriaRepository,
      eliminarPublicacionRepository, obtenerUltimaPublicacionRepository,
      insertarCategoriaPublicacionRepository, modificarCategoriaPublicacionRepository,
-     listarPublicacionRepository, listarPublicacionPorCategoriaRepository } from "../repository/PublicationRepository.js"
+     listarPublicacionRepository, listarPublicacionPorCategoriaRepository, listarPublicacionPorTituloRepository } from "../repository/PublicationRepository.js"
 import { obtenerUsuarioPorCorreoYPassword } from "../repository/UsersRepository.js"
 import { obtenerCategorianRepository } from "../repository/CategoryRepository.js"
 
@@ -179,6 +179,22 @@ export const listarPublicacionPorCategoria = async (req, res) => {
         }
         /* F- Validacion de datos */
         const oRespuesta = await listarPublicacionPorCategoriaRepository(id);
+        return oRespuesta;
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}
+
+export const listarPublicacionPorTitulo = async (req, res) => {
+
+    try {
+        const {body: {titulo}} = req;
+        /* I- Validacion de datos */ 
+        if( titulo === undefined ){
+            return {mensaje: PUBLICACION_TITULO_REQUERIDO, codigo: PUBLICACION_COD_TITULO};
+        }
+        /* F- Validacion de datos */
+        const oRespuesta = await listarPublicacionPorTituloRepository(titulo);
         return oRespuesta;
     } catch (error) {
         return {mensaje: error.message, codigo: CODIGO_ERROR}
