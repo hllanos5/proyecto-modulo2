@@ -1,0 +1,795 @@
+{
+	"info": {
+		"_postman_id": "05cb5fbf-6579-43a7-a9ab-336f082edded",
+		"name": "M2-Proyecto-Final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11898375"
+	},
+	"item": [
+		{
+			"name": "proyecto-final Copy",
+			"item": [
+				{
+					"name": "user",
+					"item": [
+						{
+							"name": "userAll",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Admin123x*",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "userAdd",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_rol\": 2,\r\n    \"nombre\": \"nombre1\",\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"password\": \"password123x*\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "userUpdate",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_rol\": 1,\r\n    \"nombre\": \"nombre11\",\r\n    \"apellido\": \"apellido11\",\r\n    \"email\": \"prueba11@gmail.com\",\r\n    \"password\": \"password123x*\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/users/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "userDelete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/users/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "rol",
+					"item": [
+						{
+							"name": "rolAll",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Admin123x*",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/roles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "rolAdd",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/roles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RolUpdate",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"nombre11\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/roles/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"roles",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "rolDelete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/roles/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"roles",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "category",
+					"item": [
+						{
+							"name": "categoryAll",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Admin123x*",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cateogoryAdd",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Admin123x*",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"pruebaaaa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "categoryUpdate",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Admin123x*",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"nombre11\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "categoryDelete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Admin123x*",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/category/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"category",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "publication",
+					"item": [
+						{
+							"name": "publicationAdd",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "email",
+										"value": "hllanos@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Hans123x*",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"titulo\": \"Titulo11\",\r\n    \"descripcion\": \"Descripcion11\",\r\n    \"id_categoria\":2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/publication",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"publication"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "publicationUpdate",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "email",
+										"value": "hllanos@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Hans123x*",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"titulo\": \"titulo11\",\r\n    \"descripcion\": \"descripcion11\",\r\n    \"id_categoria\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/publication/14",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"publication",
+										"14"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "publicationDelete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "email",
+										"value": "hllanos@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Hans123x*",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/publication/11",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"publication",
+										"11"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "publicationAll",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Admin123x*",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/publication",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"publication"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "publicationPorCategoriaAll",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Admin123x*",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/publication/category/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"publication",
+										"category",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "publicationPorTituloAll",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Admin123x*",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"titulo\": \"z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/publication/titulo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"publication",
+										"titulo"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "comment",
+					"item": [
+						{
+							"name": "commentAdd",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Admin123x*",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"comentario\": \"este es mi comentario para el post 1\",\r\n    \"id_publicacion\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/comment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"comment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "commentUpdate",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "email",
+										"value": "hllanos@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Hans123x*",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"comentario\": \"comentario123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/comment/21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"comment",
+										"21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "commentDelete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "email",
+										"value": "hllanos@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Hans123x*",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/comment/21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"comment",
+										"21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "commentByPublication",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@controlaya.com",
+										"type": "text"
+									},
+									{
+										"key": "password",
+										"value": "Admin123x*",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/comment/publication/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"comment",
+										"publication",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
