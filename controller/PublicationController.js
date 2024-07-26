@@ -1,7 +1,7 @@
 import { crearPublicacionRepository, obtenerPublicacionRepository, modificarCategoriaRepository,
      eliminarPublicacionRepository, obtenerUltimaPublicacionRepository,
      insertarCategoriaPublicacionRepository, modificarCategoriaPublicacionRepository,
-     listarPublicacionRepository } from "../repository/PublicationRepository.js"
+     listarPublicacionRepository, listarPublicacionPorCategoriaRepository } from "../repository/PublicationRepository.js"
 import { obtenerUsuarioPorCorreoYPassword } from "../repository/UsersRepository.js"
 import { obtenerCategorianRepository } from "../repository/CategoryRepository.js"
 
@@ -163,6 +163,22 @@ export const listarPublicacion = async (req, res) => {
 
     try {
         const oRespuesta = await listarPublicacionRepository();
+        return oRespuesta;
+    } catch (error) {
+        return {mensaje: error.message, codigo: CODIGO_ERROR}
+    }
+}
+
+export const listarPublicacionPorCategoria = async (req, res) => {
+
+    try {
+        const { params: { id }, headers:{ email, password}  } = req;
+        /* I- Validacion de datos */ 
+        if( id === undefined ){
+            return {mensaje: CATEGORIA_ID_REQUERIDO, codigo: CATEGORIA_COD_ID_REQUERIDO};
+        }
+        /* F- Validacion de datos */
+        const oRespuesta = await listarPublicacionPorCategoriaRepository(id);
         return oRespuesta;
     } catch (error) {
         return {mensaje: error.message, codigo: CODIGO_ERROR}
