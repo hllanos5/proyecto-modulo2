@@ -1,6 +1,6 @@
 
 import { Router } from 'express'
-import { crearPublicacion } from '../controller/PublicationController.js'
+import { crearPublicacion, modificarPublicacion } from '../controller/PublicationController.js'
 import { CODIGO_OK, CODIGO_ERROR } from '../config/CodigosConfig.js';
 
 export const publicationRoutes = Router()
@@ -23,7 +23,7 @@ publicationRoutes.post('/', async (req, res, next) => {
 //Actualiza el Rol
 publicationRoutes.put('/:id', async (req, res, next) => {
     try {
-        const oRespuesta = await modificarRol(req);
+        const oRespuesta = await modificarPublicacion(req);
         if (oRespuesta.codigo === CODIGO_OK) {
             return res.status(200).json(oRespuesta);
         }
