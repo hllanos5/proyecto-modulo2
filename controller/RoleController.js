@@ -10,7 +10,7 @@ import { USUARIO_NO_ENCONTRADO, USUARIO_SIN_PRIVILEGIOS, USUARIO_CORREO_REQUERID
 
 
 export const listarRol = async (req, res) => {
-
+    //#swagger.tags = ['Rol']
     try {
         const { headers: { email, password } } = req;
         /* I- Validacion de datos */ 
@@ -39,7 +39,7 @@ export const listarRol = async (req, res) => {
 
 
 export const crearRol = async (req, res) => {
-
+    //#swagger.tags = ['Rol']
     try {
         const { body: { nombre } } = req;
         /* I- Validacion de datos */ 
@@ -57,7 +57,7 @@ export const crearRol = async (req, res) => {
 
 
 export const modificarRol = async (req, res) => {
-
+    //#swagger.tags = ['Rol']
     try {
         const { body: { nombre }, params: { id }  } = req;
         /* I- Validacion de datos */ 
@@ -78,7 +78,7 @@ export const modificarRol = async (req, res) => {
 
 
 export const eliminarRol = async (req, res) => {
-
+    //#swagger.tags = ['Rol']
     try {
         const { params: { id } } = req;
         /* I- Validacion de datos */ 

@@ -15,7 +15,7 @@ import { USUARIO_NO_ENCONTRADO, USUARIO_CORREO_REQUERIDO,
     PUBLICACION_ID_REQUERIDO, PUBLICACION_NO_ENCONTRADO, PUBLICACION_PUBLICACION_NO_USUARIO, CATEGORIA_ID_REQUERIDO } from '../config/MensajesConfig.js';
 
 export const crearPublicacion = async (req, res) => {
-
+    //#swagger.tags = ['Publicacion']
     try {
         const { headers:{ email, password}, body: { titulo, descripcion, id_categoria} } = req;
 
@@ -65,7 +65,7 @@ export const crearPublicacion = async (req, res) => {
 }
 
 export const modificarPublicacion = async (req, res) => {
-
+    //#swagger.tags = ['Publicacion']
     try {
         const { body: { titulo, descripcion, id_categoria }, params: { id }, headers:{ email, password}  } = req;
         /* I- Validacion de datos */ 
@@ -117,7 +117,7 @@ export const modificarPublicacion = async (req, res) => {
 }
 
 export const eliminarPublicacion = async (req, res) => {
-
+    //#swagger.tags = ['Publicacion']
     try {
         const { params: { id }, headers:{ email, password}  } = req;
         /* I- Validacion de datos */ 
@@ -160,7 +160,7 @@ export const eliminarPublicacion = async (req, res) => {
 
 
 export const listarPublicacion = async (req, res) => {
-
+    //#swagger.tags = ['Publicacion']
     try {
         const oRespuesta = await listarPublicacionRepository();
         return oRespuesta;
@@ -170,7 +170,7 @@ export const listarPublicacion = async (req, res) => {
 }
 
 export const listarPublicacionPorCategoria = async (req, res) => {
-
+    //#swagger.tags = ['Publicacion']
     try {
         const { params: { id }, headers:{ email, password}  } = req;
         /* I- Validacion de datos */ 
@@ -186,7 +186,7 @@ export const listarPublicacionPorCategoria = async (req, res) => {
 }
 
 export const listarPublicacionPorTitulo = async (req, res) => {
-
+    //#swagger.tags = ['Publicacion']
     try {
         const {body: {titulo}} = req;
         /* I- Validacion de datos */ 

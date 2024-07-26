@@ -12,7 +12,7 @@ import { USUARIO_NO_ENCONTRADO, USUARIO_CORREO_REQUERIDO,
     COMENTARIO_ID_REQUERIDO, COMENTARIO_NO_ENCONTRADO, COMENTARIO_PUBLICACION_NO_USUARIO} from '../config/MensajesConfig.js';
 
 export const crearComentario = async (req, res) => {
-
+    //#swagger.tags = ['Comentario']
     try {
         const { body: { id_publicacion, comentario }, headers:{ email, password} } = req;
                
@@ -48,7 +48,7 @@ export const crearComentario = async (req, res) => {
 }
 
 export const modificarComentario = async (req, res) => {
-
+    //#swagger.tags = ['Comentario']
     try {
         const { body: { comentario }, headers:{ email, password},  params: { id }, } = req;
                
@@ -98,7 +98,7 @@ export const modificarComentario = async (req, res) => {
 }
 
 export const eliminarComentario = async (req, res) => {
-
+    //#swagger.tags = ['Comentario']
     try {
         const { params: { id }, headers:{ email, password}  } = req;
         /* I- Validacion de datos */ 
@@ -142,6 +142,7 @@ export const eliminarComentario = async (req, res) => {
 }
 
 export const listarComentariosPorIdPublicacion = async (req, res) => {
+    //#swagger.tags = ['Comentario']
     const { params: { id }} = req;
     try {
         const oRespuesta = await listarComentarioPorIdPublicacionRepository(id);

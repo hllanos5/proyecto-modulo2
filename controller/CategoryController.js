@@ -9,7 +9,7 @@ import { USUARIO_NO_ENCONTRADO, USUARIO_SIN_PRIVILEGIOS, USUARIO_CORREO_REQUERID
     USUARIO_PASSWORD_REQUERIDO, CATEGORIA_NOMBRE_REQUERIDO, CATEGORIA_ID_REQUERIDO} from '../config/MensajesConfig.js';
 
 export const listarCategoria = async (req, res) => {
-
+    //#swagger.tags = ['Categoria']
     try {
         const { headers:{ email, password} } = req;
         
@@ -40,7 +40,7 @@ export const listarCategoria = async (req, res) => {
 }
 
 export const crearCategoria = async (req, res) => {
-
+    //#swagger.tags = ['Categoria']
     try {
         const { body: { nombre }, headers:{ email, password} } = req;
                
@@ -75,7 +75,7 @@ export const crearCategoria = async (req, res) => {
 
 
 export const modificarCategoria = async (req, res) => {
-
+    //#swagger.tags = ['Categoria']
     try {
         const { body: { nombre }, params: { id }, headers:{ email, password}  } = req;
         /* I- Validacion de datos */ 
@@ -112,7 +112,7 @@ export const modificarCategoria = async (req, res) => {
 
 
 export const eliminarCategoria = async (req, res) => {
-
+    //#swagger.tags = ['Categoria']
     try {
         const { params: { id }, headers:{ email, password}  } = req;
         /* I- Validacion de datos */ 

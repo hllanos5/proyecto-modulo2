@@ -10,7 +10,7 @@ import { USUARIO_NO_ENCONTRADO, USUARIO_SIN_PRIVILEGIOS, USUARIO_CORREO_REQUERID
     USUARIO_APELLIDO_REQUERIDO} from '../config/MensajesConfig.js';
 
 export const listarUsuario = async (req, res) => {
-
+    //#swagger.tags = ['Usuario']
     try {
         const { headers: { email, password } } = req;
         /* I- Validacion de datos */ 
@@ -38,7 +38,7 @@ export const listarUsuario = async (req, res) => {
 }
 
 export const crearUsuario = async (req, res) => {
-
+    //#swagger.tags = ['Usuario']
     try {
         const { body: { id_rol, nombre, apellido, email, password } } = req;
         /* I- Validacion de datos */ 
@@ -68,7 +68,7 @@ export const crearUsuario = async (req, res) => {
 }
 
 export const modificarUsuario = async (req, res) => {
-
+    //#swagger.tags = ['Usuario']
     try {
         const { body: { id_rol, nombre, apellido, email, password }, params: { id }  } = req;
         /* I- Validacion de datos */ 
@@ -100,7 +100,7 @@ export const modificarUsuario = async (req, res) => {
 }
 
 export const eliminarUsuario = async (req, res) => {
-
+    //#swagger.tags = ['Usuario']
     try {
         const { params: { id } } = req;
         /* I- Validacion de datos */ 
